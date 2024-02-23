@@ -1,4 +1,4 @@
-import store from "./app/store"
+import { store } from "./app/store"
 import { WeatherApp } from "./components/WeatherApp"
 import { Provider } from'react-redux'
 

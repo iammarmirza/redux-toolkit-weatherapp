@@ -1,31 +1,16 @@
-import { useSelector, useDispatch } from 'react-redux'
-import { API_KEY, BASE_URL } from "../utils/constants"
-import { addWeather, changeText } from '../features/weather/weatherSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { changeText, fetchWeather } from '../features/weather/weatherSlice'
 
 export const WeatherInput = () => {
-    const text = useSelector(state => state.text)
     const dispatch = useDispatch()
-
-    const fetchWeatherData = async () => {
-        try {
-            const response = await fetch(`${BASE_URL}&q=${text}&appid=${API_KEY}`)
-            const _data = await response.json()
-            dispatch(addWeather(_data))
-
-            if (!response.ok) {
-                throw new Error('Something bad happened')
-            }
-        } catch (error) {
-            console.log(error.message)
-        }
-    }
+    const text = useSelector(state => state.text)
 
     const handleEnterKey = (e) => {
-        if (e.key === 'Enter' && text !== '') fetchWeatherData()
+        if (e.key === 'Enter' && text !== '') dispatch(fetchWeather(text))
     }
 
     const handleSearchButton = () => {
-        if (text !== '') fetchWeatherData()
+        if (text !== '') dispatch(fetchWeather(text))
     }
 
     return (
