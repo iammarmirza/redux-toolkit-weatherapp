@@ -22,11 +22,11 @@ export const weatherSlice = createSlice({
         addWeather: (state, action) => {
             if (action.payload && action.payload.cod !== '404') {
                 const data = {
-                    city : action.payload.name,
-                    temperature : `${Math.round(action.payload.main?.temp)}°C`,
-                    humidity : `${action.payload.main?.humidity}%`,
-                    windspeed : `${action.payload.wind?.speed} km/h`,
-                    status : action.payload.weather[0].main
+                    city: action.payload.name,
+                    temperature: `${Math.round(action.payload.main?.temp)}°C`,
+                    humidity: `${action.payload.main?.humidity}%`,
+                    windspeed: `${action.payload.wind?.speed} km/h`,
+                    status: action.payload.weather[0].main
                 }
                 state.weatherData = data
             } else {
